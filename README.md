@@ -1,4 +1,6 @@
 # Mini-CRM
+This project is integrated with Circle_Ci
+
 
 This project comes from Laravel Daily blog post, [How to Test Junior Laravel Developer Skills: Sample Project](http://laraveldaily.com/test-junior-laravel-developer-sample-project), a challenge (sample project) for junior laravel developer.
 
