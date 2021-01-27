@@ -10,18 +10,18 @@ jobs:
 
       - setup_remote_docker
           #docker_layer_caching: false
-        - run:
-          name: Start container and verify it is working
-          command: |
-            set -x
-            docker-compose up -d
-            docker run --network container:contacts \
-              appropriate/curl --retry 10 --retry-delay 1 --retry-connrefused http://localhost:8080/contacts/test
+      - run:
+        name: Start container and verify it is working
+        command: |
+          set -x
+          docker-compose up -d
+          docker run --network container:contacts \
+          appropriate/curl --retry 10 --retry-delay 1 --retry-connrefused http://localhost:8080/contacts/test
               
-        - run:
-          name: Build and push Docker image
-          command: |
-            docker-compose build
+      - run:
+        name: Build and push Docker image
+        command: |
+          docker-compose build
      
             #docker build -t ahmad-ra/mini-crm/tree/circleci-project-setup .  #repo name must be all small letters
             #echo $DockerHubPass | docker login -u $DockerHubUsername --password-stdin
