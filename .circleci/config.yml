@@ -22,7 +22,8 @@ jobs:
           name: Build and push Docker image
           command: |
             docker-compose build
-            #docker build -t ahmad-ra/Mini-CRM/tree/circleci-project-setup .
+     
+            #docker build -t ahmad-ra/mini-crm/tree/circleci-project-setup .  #repo name must be all small letters
             #echo $DockerHubPass | docker login -u $DockerHubUsername --password-stdin
             #docker push ahmad-ra/Mini-CRM/tree/circleci-project-setup
       
