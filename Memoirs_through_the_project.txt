@@ -1,0 +1,43 @@
+_I used circle CI, as it was advised for a small start-up of 1~3 developers.
+
+_I intended to not put the .circleci/config.yaml file to see how the tool will act, it turns out that it created it for me!
+
+_I saw a tut for someone doing tests on a python app and integrating to circle_ci config, will do it on Laravel
+
+_Setting env vars in circle_ci project settings to include docker_hub username/password
+
+_(from docs)
+If you are using Workflows, jobs must have unique names within the .circleci/config.yml file.If you are not using workflows, the jobs map must contain a job named build. This build job is the default entry-point for a run that is triggered by a push to your VCS provider.
+
+_Docker build -t repo 
+-t: tag the resulting image to refer to the repo
+
+_there is a dot in the end of docker build command
+
+dockerhub uname: ahmrash	
+
+
+_nothing worked for docker with circle ci for laravel, will try running laravel on docker first without ci.
+
+_The {{username}} should be the username of the dockerhub account, not github. SSHIT SHITTTT
+
+_The image tag should be EXACTLY {{userneme}}/{{image name}}:{{version}}
+Lw m3mltsh version fa lw7do 7ydeeha tag latest
+
+_docker build -t $DockerHubUsername /mini-crm: .
+echo $DockerHubPass | docker login -u $DockerHubUsername --password-stdin
+docker push $DockerHubUsername/mini-crm:
+
+
+_docker run --rm -v $(pwd):/app composer install
+da 3shan mynzlsh composer globally, m3 en el CI kda kda ephermal bs eshta ana bgarrab
+Kda nazzel el composer fe container 
+
+_Eldonia meshyet fl Docker. Will try with Circle CI now
+
+_free plan of circle ci doesn't include docker layer caching. Bo5ala
+
+
+
+
+
