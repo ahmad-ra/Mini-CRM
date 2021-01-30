@@ -37,6 +37,7 @@ _Eldonia meshyet fl Docker. Will try with Circle CI now
 
 _free plan of circle ci doesn't include docker layer caching. Bo5ala
 
+_balash php latest fl docker image 75lleeha 7.2 mthln 3shan el requirements fe composer.json 3ayza php ^7
 
 
 
