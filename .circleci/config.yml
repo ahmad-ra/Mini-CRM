@@ -56,8 +56,12 @@ jobs:
           name: Run linter
           command: |
             php artisan blade:lint            
-
-
+      - run:
+          name: install and run formatter (Plus)
+          command: |
+            composer require matt-allan/laravel-code-style --dev
+            php artisan vendor:publish --provider="MattAllan\LaravelCodeStyle\ServiceProvider"
+            vendor/bin/php-cs-fixer fix --dry-run --diff
       # - run:
       #     name: Build and push Docker image
       #     command: |
