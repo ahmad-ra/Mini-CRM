@@ -56,10 +56,11 @@ jobs:
       #     name: Run linter
       #     command: |
       #       php artisan blade:lint            
+      - run:  docker run --name ephermal -it -v $(pwd):/app -w /app shufo/blade-formatter resources/**/*.blade.php
+
       - run:
-          name: install and run formatter (Plus)
+          name: run formatter (Plus)
           command: |
-            docker run --name ephermal -it -v $(pwd):/app -w /app shufo/blade-formatter resources/**/*.blade.php
             docker restart ephermal&& docker exec -it ephermal blade-formatter app/** -d -c
             #docker run blade-formatter app/** -d -c
             # composer require matt-allan/laravel-code-style "^0.4"
