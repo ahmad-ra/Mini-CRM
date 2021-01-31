@@ -40,14 +40,18 @@ jobs:
       - run:
           name: Migrate db 
           command: |
-            php artisan migrate --env=testing --database=mysql --force     
-             
+            php artisan migrate --env=testing --database=mysql --force   
       - run:
-          name: Build and push Docker image
+          name: Unit test 
           command: |
-            #docker-compose build
+            ./vendor/bin/phpunit       
+      
+      # - run:
+      #     name: Build and push Docker image
+      #     command: |
+      #       #docker-compose build
 
-            docker build -t ahmrash/mini-crm .  #repo name must be all small letters
-            echo $DockerHubPass | docker login -u $DockerHubUsername --password-stdin
-            docker push ahmrash/mini-crm
+      #       docker build -t ahmrash/mini-crm .  #repo name must be all small letters
+      #       echo $DockerHubPass | docker login -u $DockerHubUsername --password-stdin
+      #       docker push ahmrash/mini-crm
       
