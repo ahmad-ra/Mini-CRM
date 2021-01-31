@@ -61,7 +61,7 @@ jobs:
       - run:
           name: run formatter (Plus)
           command: |
-            docker restart ephermal&& docker exec -it ephermal blade-formatter app/** -d -c
+            docker restart ephermal&& docker exec -it ephermal blade-formatter app/** -d -c&& docker inspect ephermal
             #docker run blade-formatter app/** -d -c
             # composer require matt-allan/laravel-code-style "^0.4"
             # php artisan vendor:publish --provider="MattAllan\LaravelCodeStyle\ServiceProvider"

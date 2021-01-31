@@ -44,4 +44,5 @@ _ I also have to downgrade mysql image to match the required in this project. Wi
 _docker containers initiated by docker run exit after the command, so any later commands (docker exec) referencing to that container will fail as the container is not running!. 
 A work around was to restart the container after first initiation (docker restart cont_name) then in the same command do && your needed script.
 
+_exit code is 137, which may be a killing by the host (circle ci) due to being out_of_memory in the free plan. Will make sure by seeing (docker inspect container_name)
 
