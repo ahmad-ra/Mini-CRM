@@ -29,7 +29,7 @@ jobs:
             sudo docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd
             sudo docker-php-ext-install zip bcmath pdo_mysql
       - run:
-          name: Composer 
+          name: Install dependencies 
           command: |
             composer update
             composer install -n --prefer-dist   
