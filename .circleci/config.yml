@@ -45,8 +45,19 @@ jobs:
       - run:
           name: Unit tests 
           command: |
-            ./vendor/bin/phpunit       
+            ./vendor/bin/phpunit  
       
+      - run:
+          name: Install linter (Plus)
+          command: |
+            composer require magentron/laravel-blade-lint      
+
+      - run:
+          name: Run linter
+          command: |
+            php artisan blade:lint            
+
+
       # - run:
       #     name: Build and push Docker image
       #     command: |
