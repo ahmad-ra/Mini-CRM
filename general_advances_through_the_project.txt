@@ -41,5 +41,7 @@ _balash php latest fl docker image 75lleeha 7.2 mthln 3shan el requirements fe c
 
 _ I also have to downgrade mysql image to match the required in this project. Will try 5.7.33-ram
 
+_docker containers initiated by docker run exit after the command, so any later commands (docker exec) referencing to that container will fail as the container is not running!. 
+A work around was to restart the container after first initiation (docker restart cont_name) then in the same command do && your needed script.
 
 
