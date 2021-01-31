@@ -47,19 +47,18 @@ jobs:
           command: |
             ./vendor/bin/phpunit  
       
-      - run:
-          name: Install linter (Plus)
-          command: |
-            composer require magentron/laravel-blade-lint      
+      # - run:
+      #     name: Install linter (Plus)
+      #     command: |
+      #       composer require magentron/laravel-blade-lint      
 
-      - run:
-          name: Run linter
-          command: |
-            php artisan blade:lint            
+      # - run:
+      #     name: Run linter
+      #     command: |
+      #       php artisan blade:lint            
       - run:
           name: install and run formatter (Plus)
           command: |
-            composer require illuminate/support "5.7.0"
             composer require matt-allan/laravel-code-style "^0.4" --dev
             php artisan vendor:publish --provider="MattAllan\LaravelCodeStyle\ServiceProvider"
             vendor/bin/php-cs-fixer fix --dry-run --diff
