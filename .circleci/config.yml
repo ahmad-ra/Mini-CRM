@@ -59,9 +59,10 @@ jobs:
       - run:
           name: install and run formatter (Plus)
           command: |
-            composer require matt-allan/laravel-code-style "^0.4"
-            php artisan vendor:publish --provider="MattAllan\LaravelCodeStyle\ServiceProvider"
-            vendor/bin/php-cs-fixer fix --dry-run --diff
+            docker run -it -v $(pwd):/app -w /app shufo/blade-formatter resources/**/*.blade.php
+            # composer require matt-allan/laravel-code-style "^0.4"
+            # php artisan vendor:publish --provider="MattAllan\LaravelCodeStyle\ServiceProvider"
+            # vendor/bin/php-cs-fixer fix --dry-run --diff
       # - run:
       #     name: Build and push Docker image
       #     command: |
