@@ -34,15 +34,16 @@ jobs:
             composer update
             composer install -n --prefer-dist   
       - run:
-          name: copy env 
+          name: copy env and generate key
           command: |
-            cp .env.example .env     
+            cp .env.example .env  
+            php artisan key:generate   
       - run:
           name: Migrate db 
           command: |
-            php artisan migrate --env=testing --database=mysql --force   
+            php artisan migrate --env=testing --database=mysql --force --seed
       - run:
-          name: Unit test 
+          name: Unit tests 
           command: |
             ./vendor/bin/phpunit       
       
