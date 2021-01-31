@@ -59,6 +59,7 @@ jobs:
       - run:
           name: install and run formatter (Plus)
           command: |
+            composer reauire illuminate/support "5.7.0"
             composer require matt-allan/laravel-code-style "^0.4" --dev
             php artisan vendor:publish --provider="MattAllan\LaravelCodeStyle\ServiceProvider"
             vendor/bin/php-cs-fixer fix --dry-run --diff
