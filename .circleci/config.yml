@@ -59,7 +59,7 @@ jobs:
       - run:
           name: install and run formatter (Plus)
           command: |
-            composer require matt-allan/laravel-code-style --dev
+            composer require matt-allan/laravel-code-style "^0.4" --dev
             php artisan vendor:publish --provider="MattAllan\LaravelCodeStyle\ServiceProvider"
             vendor/bin/php-cs-fixer fix --dry-run --diff
       # - run:
