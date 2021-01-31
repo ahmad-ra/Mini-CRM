@@ -34,10 +34,14 @@ jobs:
             composer update
             composer install -n --prefer-dist   
       - run:
+          name: copy env 
+          command: |
+            cp .env.example .env     
+      - run:
           name: Migrate db 
           command: |
             php artisan migrate --env=testing --database=mysql --force     
-               
+             
       - run:
           name: Build and push Docker image
           command: |
