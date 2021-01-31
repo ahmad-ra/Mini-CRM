@@ -59,9 +59,9 @@ jobs:
       - run:
           name: install and run formatter (Plus)
           command: |
-            npm install -g blade-formatter  
-          #docker run -it -v $(pwd):/app -w /app shufo/blade-formatter resources/**/*.blade.php
-            blade-formatter app/** -d -c
+            npm install -g blade-formatter 
+            #docker run -it -v $(pwd):/app -w /app shufo/blade-formatter resources/**/*.blade.php
+            #docker run blade-formatter app/** -d -c
             # composer require matt-allan/laravel-code-style "^0.4"
             # php artisan vendor:publish --provider="MattAllan\LaravelCodeStyle\ServiceProvider"
             # vendor/bin/php-cs-fixer fix --dry-run --diff
