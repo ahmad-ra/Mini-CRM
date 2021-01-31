@@ -42,31 +42,21 @@ jobs:
           name: Migrate db 
           command: |
             php artisan migrate --env=testing --database=mysql --force --seed
-      # - run:
-      #     name: Unit tests 
-      #     command: |
-      #       ./vendor/bin/phpunit  
+      - run:
+          name: Unit tests 
+          command: |
+            ./vendor/bin/phpunit  
       
-      # - run:
-      #     name: Install linter (Plus)
-      #     command: |
-      #       composer require magentron/laravel-blade-lint      
-
-      # - run:
-      #     name: Run linter
-      #     command: |
-      #       php artisan blade:lint            
-      - run:  docker run --name ephermal -it -v $(pwd):/app -w /app shufo/blade-formatter resources/**/*.blade.php
+      - run:
+          name: Install linter (Plus)
+          command: |
+            composer require magentron/laravel-blade-lint      
 
       - run:
-          name: run formatter (Plus)
+          name: Run linter
           command: |
-            docker restart ephermal&& docker exec -it ephermal blade-formatter --help #app/** -d -c
-            #docker run blade-formatter app/** -d -c
-            # composer require matt-allan/laravel-code-style "^0.4"
-            # php artisan vendor:publish --provider="MattAllan\LaravelCodeStyle\ServiceProvider"
-            # vendor/bin/php-cs-fixer fix --dry-run --diff
-      - run : docker inspect ephermal     
+            php artisan blade:lint            
+
       # - run:
       #     name: Build and push Docker image
       #     command: |
