@@ -144,11 +144,13 @@ jobs:
       #- checkout      
       - attach_workspace:
          at: ~/ 
-      - setup_remote_docker:            
+      - setup_remote_docker:           
       - run: dockerize -wait tcp://localhost:3306 -timeout 1m  
       - run:
           name: build_image
           command: |
+            sudo docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd 
+            sudo docker-php-ext-install zip bcmath pdo_mysql 
             docker build -t ahmrash/mini-crm .  #repo name must be all small letters
             # docker run -d --rm --name ephermal ahmrash/mini-crm
             # docker exec -it ephermal ./vendor/bin/phpunit
