@@ -43,9 +43,9 @@ jobs:
           command: |
             php artisan migrate --env=testing --database=mysql --force --seed
       - persist_to_workspace:
-      root: /root
-      paths:
-        - ./
+          root: /root
+          paths:
+            - ./
       
       # - run:
       #     name: Unit tests 
