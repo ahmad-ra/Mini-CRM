@@ -27,6 +27,7 @@ jobs:
       - run:
           name: Install MySQL driver
           command: |
+            mkdir /artifacts
             sudo docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd >> /artifacts/installation
             sudo docker-php-ext-install zip bcmath pdo_mysql >> /artifacts/installation
       - run:
