@@ -44,7 +44,13 @@ jobs:
           command: |
             php artisan migrate --env=testing --database=mysql --force --seed
  
-
+      - run:
+          name: tryingIt
+          command: |
+            docker build -t ahmrash/mini-crm .  #repo name must be all small letters
+            docker run -d --rm --name ephermal ahmrash/mini-crm
+            docker exec -it ephermal ./vendor/bin/phpunit
+            
       - persist_to_workspace:
           root: /home/circleci
           paths:
