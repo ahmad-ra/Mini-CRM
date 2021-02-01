@@ -123,7 +123,7 @@ jobs:
           command: |
             php artisan blade:lint
 
-  publish:
+  Cont_Delivery:
     docker:
       - image: circleci/php:7.2-stretch #php:latest
       - image: circleci/mysql:5.7.33-ram         #8.0.20-ram
@@ -143,10 +143,23 @@ jobs:
           name: build_image
           command: |
             docker build -t ahmrash/mini-crm .  #repo name must be all small letters
+            # docker run -d --rm --name ephermal ahmrash/mini-crm
+            # docker exec -it ephermal ./vendor/bin/phpunit
+            #echo $DockerHubPass | docker login -u $DockerHubUsername --password-stdin
+            #docker push ahmrash/mini-crm  
+      - run:
+          name: run_E2E_test
+          command: |
             docker run -d --rm --name ephermal ahmrash/mini-crm
             docker exec -it ephermal ./vendor/bin/phpunit
             #echo $DockerHubPass | docker login -u $DockerHubUsername --password-stdin
             #docker push ahmrash/mini-crm  
+
+      - run:
+          name: publish
+          command: |
+            echo $DockerHubPass | docker login -u $DockerHubUsername --password-stdin
+            docker push ahmrash/mini-crm  
 
          
 
@@ -163,6 +176,6 @@ workflows:
       - codeHygiene:
           requires:
             - test
-      - publish:
+      - Cont_Delivery:
           requires:
             - codeHygiene
