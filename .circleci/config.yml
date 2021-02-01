@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: circleci/php:7.2-stretch #php:latest
-      - image: circleci/mysql:5.7.33-ram         #8.0.20-ram
+      - image: circleci/mysql:5.7.33         #8.0.20-ram
         command: mysqld --default-authentication-plugin=mysql_native_password
         environment:
           MYSQL_USER: root
@@ -85,7 +85,7 @@ jobs:
   test:
     docker:
       - image: circleci/php:7.2-stretch #php:latest
-      - image: circleci/mysql:5.7.33-ram         #8.0.20-ram
+      - image: circleci/mysql:5.7.33         #8.0.20-ram
         command: mysqld --default-authentication-plugin=mysql_native_password
         environment:
           MYSQL_USER: root
@@ -107,7 +107,7 @@ jobs:
   codeHygiene:
     docker:
       - image: circleci/php:7.2-stretch #php:latest
-      - image: circleci/mysql:5.7.33-ram         #8.0.20-ram
+      - image: circleci/mysql:5.7.33         #8.0.20-ram
         command: mysqld --default-authentication-plugin=mysql_native_password
         environment:
           MYSQL_USER: root
@@ -132,7 +132,7 @@ jobs:
   Cont_Delivery:
     docker:
       - image: circleci/php:7.2-stretch #php:latest
-      - image: circleci/mysql:5.7.33-ram         #8.0.20-ram
+      - image: circleci/mysql:5.7.33         #8.0.20-ram
         command: mysqld --default-authentication-plugin=mysql_native_password
         environment:
           MYSQL_USER: root
