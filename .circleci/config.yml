@@ -35,6 +35,7 @@ jobs:
           command: |
             composer update
             composer install -n --prefer-dist >> ./artifacts/composer
+      - run: dockerize -wait tcp://localhost:3306 -timeout 1m     
       - run:
           name: copy env and generate key
           command: |
