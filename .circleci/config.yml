@@ -15,14 +15,6 @@ jobs:
       - checkout
 
       - setup_remote_docker:
-         # docker_layer_caching: true not available in free plan of circle ci
-      # - run:
-      #     name: Start container and verify it is working
-      #     command: |
-      #       set -x
-      #       docker-compose up -d
-      #       docker run --network container:contacts \
-      #         appropriate/curl --retry 10 --retry-delay 1 --retry-connrefused http://localhost:8080/contacts/test
 
       - run:
           name: Install MySQL driver
@@ -46,12 +38,7 @@ jobs:
           command: |
             php artisan migrate --env=testing --database=mysql --force --seed
  
-      # - run:
-      #     name: tryingIt
-      #     command: |
-      #       docker build -t ahmrash/mini-crm .  #repo name must be all small letters
-      #       docker run -d --rm --name ephermal ahmrash/mini-crm
-      #       docker exec -it ephermal ./vendor/bin/phpunit
+  
       - store_artifacts:
           path: ./artifacts
           destination: build      
@@ -59,29 +46,7 @@ jobs:
           root: /home/circleci
           paths:
             - project      
-      # - run:
-      #     name: Unit tests 
-      #     command: |
-      #       ./vendor/bin/phpunit  
       
-      # - run:
-      #     name: Install linter (Plus)
-      #     command: |
-      #       composer require magentron/laravel-blade-lint      
-
-      # - run:
-      #     name: Run linter
-      #     command: |
-      #       php artisan blade:lint            
-
-      # - run:
-      #     name: Build and push Docker image
-      #     command: |
-      #       #docker-compose build
-
-      #       docker build -t ahmrash/mini-crm .  #repo name must be all small letters
-      #       echo $DockerHubPass | docker login -u $DockerHubUsername --password-stdin
-      #       docker push ahmrash/mini-crm
   test:
     docker:
       - image: circleci/php:7.2-stretch #php:latest
@@ -152,17 +117,13 @@ jobs:
             sudo docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd 
             sudo docker-php-ext-install zip bcmath pdo_mysql 
             docker build -t ahmrash/mini-crm .  #repo name must be all small letters
-            # docker run -d --rm --name ephermal ahmrash/mini-crm
-            # docker exec -it ephermal ./vendor/bin/phpunit
-            #echo $DockerHubPass | docker login -u $DockerHubUsername --password-stdin
-            #docker push ahmrash/mini-crm  
+
       - run:
           name: run_E2E_test
           command: |
             docker run -d --rm --name ephermal ahmrash/mini-crm
             docker exec -it ephermal ./vendor/bin/phpunit
-            #echo $DockerHubPass | docker login -u $DockerHubUsername --password-stdin
-            #docker push ahmrash/mini-crm  
+
 
       - run:
           name: publish
