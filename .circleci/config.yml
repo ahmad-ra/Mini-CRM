@@ -27,18 +27,18 @@ jobs:
       - run:
           name: Install MySQL driver
           command: |
-            sudo docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd
-            sudo docker-php-ext-install zip bcmath pdo_mysql
+            sudo docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd >> /artifacts/installation
+            sudo docker-php-ext-install zip bcmath pdo_mysql >> /artifacts/installation
       - run:
           name: Install dependencies 
           command: |
             composer update
-            composer install -n --prefer-dist   
+            composer install -n --prefer-dist >> /artifacts/composer
       - run:
           name: copy env and generate key
           command: |
             cp .env.example .env  
-            php artisan key:generate   
+            php artisan key:generate>> /artifacts/key 
       - run:
           name: Migrate db 
           command: |
@@ -51,7 +51,7 @@ jobs:
       #       docker run -d --rm --name ephermal ahmrash/mini-crm
       #       docker exec -it ephermal ./vendor/bin/phpunit
       - store_artifacts:
-          path: /tmp/artifacts
+          path: /artifacts
           destination: build      
       - persist_to_workspace:
           root: /home/circleci
