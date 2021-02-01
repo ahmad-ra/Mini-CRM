@@ -16,36 +16,35 @@ jobs:
 
       - setup_remote_docker:
          # docker_layer_caching: true not available in free plan of circle ci
-      # - run:
-      #     name: Start container and verify it is working
-      #     command: |
-      #       set -x
-      #       docker-compose up -d
-      #       docker run --network container:contacts \
-      #         appropriate/curl --retry 10 --retry-delay 1 --retry-connrefused http://localhost:8080/contacts/test
+      - run:
+          name: Start container and verify it is working
+          command: |
+            set -x
+            docker-compose up -d
+            docker run --network container:contacts \
+              appropriate/curl --retry 10 --retry-delay 1 --retry-connrefused http://localhost:8080/contacts/test
 
-      # - run:
-      #     name: Install MySQL driver
-      #     command: |
-      #       sudo docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd
-      #       sudo docker-php-ext-install zip bcmath pdo_mysql
-      # - run:
-      #     name: Install dependencies 
-      #     command: |
-      #       composer update
-      #       composer install -n --prefer-dist   
-      # - run:
-      #     name: copy env and generate key
-      #     command: |
-      #       cp .env.example .env  
-      #       php artisan key:generate   
-      # - run:
-      #     name: Migrate db 
-      #     command: |
-      #       php artisan migrate --env=testing --database=mysql --force --seed
-      - run: ls
-      - run: pwd
-      - run: cd .&& pwd
+      - run:
+          name: Install MySQL driver
+          command: |
+            sudo docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd
+            sudo docker-php-ext-install zip bcmath pdo_mysql
+      - run:
+          name: Install dependencies 
+          command: |
+            composer update
+            composer install -n --prefer-dist   
+      - run:
+          name: copy env and generate key
+          command: |
+            cp .env.example .env  
+            php artisan key:generate   
+      - run:
+          name: Migrate db 
+          command: |
+            php artisan migrate --env=testing --database=mysql --force --seed
+ 
+
       - persist_to_workspace:
           root: /home/circleci
           paths:
@@ -105,8 +104,9 @@ jobs:
           MYSQL_PASSWORD: ''
          
     steps:
-      - checkout      
-            
+      #- checkout      
+      - attach_workspace:
+         at: ~/             
       - run:
           name: Install linter (Plus)
           command: |
