@@ -145,6 +145,7 @@ jobs:
       - attach_workspace:
          at: ~/ 
       - setup_remote_docker:            
+      - run: dockerize -wait tcp://localhost:3306 -timeout 1m  
       - run:
           name: build_image
           command: |
