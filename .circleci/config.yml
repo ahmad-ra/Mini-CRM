@@ -50,7 +50,9 @@ jobs:
       #       docker build -t ahmrash/mini-crm .  #repo name must be all small letters
       #       docker run -d --rm --name ephermal ahmrash/mini-crm
       #       docker exec -it ephermal ./vendor/bin/phpunit
-            
+      - store_artifacts:
+          path: /tmp/artifacts
+          destination: build      
       - persist_to_workspace:
           root: /home/circleci
           paths:
@@ -97,7 +99,9 @@ jobs:
           name: Unit tests 
           command: |
             ./vendor/bin/phpunit  
-
+      - store_artifacts:
+          path: /tmp/artifacts
+          destination: test_results   
   codeHygiene:
     docker:
       - image: circleci/php:7.2-stretch #php:latest
