@@ -42,6 +42,42 @@ jobs:
           name: Migrate db 
           command: |
             php artisan migrate --env=testing --database=mysql --force --seed
+      # - run:
+      #     name: Unit tests 
+      #     command: |
+      #       ./vendor/bin/phpunit  
+      
+      # - run:
+      #     name: Install linter (Plus)
+      #     command: |
+      #       composer require magentron/laravel-blade-lint      
+
+      # - run:
+      #     name: Run linter
+      #     command: |
+      #       php artisan blade:lint            
+
+      # - run:
+      #     name: Build and push Docker image
+      #     command: |
+      #       #docker-compose build
+
+      #       docker build -t ahmrash/mini-crm .  #repo name must be all small letters
+      #       echo $DockerHubPass | docker login -u $DockerHubUsername --password-stdin
+      #       docker push ahmrash/mini-crm
+  test:
+    docker:
+      - image: circleci/php:7.2-stretch #php:latest
+      - image: circleci/mysql:5.7.33-ram         #8.0.20-ram
+        command: mysqld --default-authentication-plugin=mysql_native_password
+        environment:
+          MYSQL_USER: root
+          MYSQL_DATABASE: db
+          MYSQL_ROOT_PASSWORD: ''
+          MYSQL_PASSWORD: ''
+         
+    steps:
+      - checkout      
       - run:
           name: Unit tests 
           command: |
@@ -56,13 +92,12 @@ jobs:
           name: Run linter
           command: |
             php artisan blade:lint            
+workflows:
+  version: 2
+  build-and-test:
+   jobs:
+      - build:
 
-      # - run:
-      #     name: Build and push Docker image
-      #     command: |
-      #       #docker-compose build
-
-      #       docker build -t ahmrash/mini-crm .  #repo name must be all small letters
-      #       echo $DockerHubPass | docker login -u $DockerHubUsername --password-stdin
-      #       docker push ahmrash/mini-crm
-      
+      - test:
+          requires:
+            - build
