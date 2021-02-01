@@ -43,6 +43,8 @@ jobs:
       #     name: Migrate db 
       #     command: |
       #       php artisan migrate --env=testing --database=mysql --force --seed
+      - run: ls
+      - run: pwd
       - persist_to_workspace:
           root: /root
           paths:
