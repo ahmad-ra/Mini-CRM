@@ -46,3 +46,8 @@ A work around was to restart the container after first initiation (docker restar
 
 _exit code is 137, which may be a killing by the host (circle ci) due to being out_of_memory in the free plan. Will make sure by seeing (docker inspect container_name)
 
+
+_running everything in one job is doable but not a good practice, you have to slice tasks in multiple jobs. BUT each job is ephermal, and you must have all data and files from the 1st job accessible to the 2nd job, and the 1st job will delete all its data after finishing. The solution is using workspaces in circle_ci. Persisting workspace in the first job and attaching to ws in the latter ones.
+
+
+
