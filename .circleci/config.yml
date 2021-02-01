@@ -99,9 +99,9 @@ jobs:
       - run:
           name: Unit tests 
           command: |
-            ./vendor/bin/phpunit  
+            ./vendor/bin/phpunit >>./artifacts/tests
       - store_artifacts:
-          path: /tmp/artifacts
+          path: ./artifacts
           destination: test_results   
   codeHygiene:
     docker:
