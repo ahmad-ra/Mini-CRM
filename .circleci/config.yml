@@ -45,10 +45,11 @@ jobs:
       #       php artisan migrate --env=testing --database=mysql --force --seed
       - run: ls
       - run: pwd
+      - run: cd .&& pwd
       - persist_to_workspace:
           root: /root
           paths:
-            - project      
+            - home      
       # - run:
       #     name: Unit tests 
       #     command: |
