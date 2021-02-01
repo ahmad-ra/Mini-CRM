@@ -47,7 +47,7 @@ COPY --chown=www:www . /var/www
 USER www
 
 # Expose port 9000 and start php-fpm server
-EXPOSE 9000
+EXPOSE 3306
 CMD ["php-fpm"]
 
 RUN php artisan config:clear
