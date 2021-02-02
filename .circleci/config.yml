@@ -151,12 +151,13 @@ jobs:
           command: bash .circleci/setup-heroku.sh # run a script to set up Heroku
 
       - run:
+          name: Deploy to Heroku
           command: |
             heroku config:set APP_KEY=$(php artisan --no-ansi key:generate --show) 
             git push heroku circleci-project-setup:master 
             #heroku run #rake db:migrate
-            sleep 5 # sleep for 5 seconds to wait for dynos
-            heroku restart
+            #sleep 5 # sleep for 5 seconds to wait for dynos
+            #heroku restart
 
 workflows:
   version: 2
