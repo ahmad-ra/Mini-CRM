@@ -152,7 +152,7 @@ jobs:
 
       - run:
           command: |
-            heroku config:set APP_KEY= cat ./artifacts/key 
+            heroku config:set APP_KEY=$(php artisan --no-ansi key:generate --show) 
             git push heroku circleci-project-setup:master 
             #heroku run #rake db:migrate
             sleep 5 # sleep for 5 seconds to wait for dynos
@@ -178,4 +178,4 @@ workflows:
       
       - deploy:
           requires:
-            - codeHygiene
+            - build
