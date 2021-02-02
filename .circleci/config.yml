@@ -41,7 +41,8 @@ jobs:
   
       - store_artifacts:
           path: ./artifacts
-          destination: build      
+          destination: build 
+
       - persist_to_workspace:
           root: /home/circleci
           paths:
@@ -132,6 +133,28 @@ jobs:
             docker push ahmrash/mini-crm  
 
          
+  deploy:
+    machine:
+        enabled: true
+    #working_directory: ~/circleci-demo-workflows
+    environment:
+      HEROKU_APP: "first-try-123" # define env var $HEROKU_APP
+      HEROKU_LOGIN: ahmad.m.rashed@outlook.com
+      HEROKU_API_KEY: 1mentorG_rashed
+
+    steps:
+      - checkout
+      - run:
+          name: Setup Heroku
+          command: bash .circleci/setup-heroku.sh # run a script to set up Heroku
+
+      - run:
+          command: |
+            heroku config:set APP_KEY= cat ./artifacts/key 
+            git push heroku circleci-project-setup:master 
+            #heroku run #rake db:migrate
+            sleep 5 # sleep for 5 seconds to wait for dynos
+            heroku restart
 
 workflows:
   version: 2
@@ -146,7 +169,7 @@ workflows:
       - codeHygiene:
           requires:
             - test
-            
+
       - Cont_Delivery:
           requires:
             - codeHygiene
