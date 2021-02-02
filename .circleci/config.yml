@@ -143,7 +143,9 @@ jobs:
       HEROKU_API_KEY: 1mentorG_rashed
 
     steps:
-      - checkout
+      #- checkout
+      - attach_workspace:
+         at: ~/ 
       - run:
           name: Setup Heroku
           command: bash .circleci/setup-heroku.sh # run a script to set up Heroku
@@ -173,3 +175,7 @@ workflows:
       - Cont_Delivery:
           requires:
             - codeHygiene
+      
+      - deploy:
+          requires:
+            - Cont_Delivery
