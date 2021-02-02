@@ -20,7 +20,8 @@ RUN apt-get update && apt-get install -y \
     vim \
     unzip \
     git \
-    curl
+    curl \
+    mysql-client
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -52,3 +53,13 @@ CMD ["php-fpm"]
 
 RUN php artisan config:clear
  
+##
+FROM mysql:5.7
+
+
+ENV MYSQL_ROOT_PASSWORD=
+ENV MYSQL_DATABASE=db
+ENV MYSQL_USER=root
+ENV MYSQL_PASSWORD=
+
+##
