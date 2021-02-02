@@ -51,3 +51,4 @@ _running everything in one job is doable but not a good practice, you have to sl
 
 
 
+_php:7.2fpm uses mariadb, so cant install mysql-client. So either use (default-mysql-client) or (mariadb-client)
