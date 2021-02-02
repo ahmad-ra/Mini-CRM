@@ -140,7 +140,7 @@ jobs:
     environment:
       HEROKU_APP: "first-try-123" # define env var $HEROKU_APP
       HEROKU_LOGIN: ahmad.m.rashed@outlook.com
-      HEROKU_API_KEY: 1mentorG_rashed
+      HEROKU_API_KEY: 13ea9e03-d687-45f5-a772-31040d974bad
 
     steps:
       #- checkout
@@ -178,4 +178,4 @@ workflows:
       
       - deploy:
           requires:
-            - Cont_Delivery
+            - codeHygiene
