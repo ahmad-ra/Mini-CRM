@@ -121,7 +121,7 @@ jobs:
       - run:
           name: run_E2E_test
           command: |
-            docker run -d --rm --name ephermal ahmrash/mini-crm
+            docker run -d --name ephermal ahmrash/mini-crm
             docker exec -it ephermal ./vendor/bin/phpunit
 
 
