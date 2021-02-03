@@ -63,3 +63,14 @@ Will have to add environment variables:
 HEROKU_LOGIN: ahmad.m.rashed@outlook.com
 HEROKU_API_KEY: 1mentorG_rashed
 HEROKU_APP: first-try-123
+
+key=$(cat ./artifacts/key)
+heroku config:set APP_KEY=$(echo $key | cut -d "[" -f2 | cut -d "]" -f1)
+_b3d ma zbbatt mwdoo3 el key bt3 el key generate enno ya5odha mn el artifacts (3shan el php not found fl job bt3 heroku). Ektashaft enny 7atet el Procfile fi config, fa 7tteto fl global
+
+_Laravel worked on Heroku, But not Mysql!
+Note from a blog: The usual configuration done using .env file in Laravel is not going work on deployed app because that file is not pushed to Heorku when app is deployed. 
+!!!!!!!!!!!!!
+
+_On Heroku project, in resources tab, you should add the Mysql as an addon to the project, name is ClearDBMySQL, bs 8alebn befloos, aw 7atta lw bbalash hwa m7tag credit card, w ana mdmansh en el website mys7bsh floos mn el hosting lamma y7sl clicks 3l site (3han el dynos hours)
+
