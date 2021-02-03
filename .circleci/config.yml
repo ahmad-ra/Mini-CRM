@@ -94,41 +94,41 @@ jobs:
           command: |
             php artisan blade:lint
 
-  deploy(DockerHub):
-    docker:
-      - image: circleci/php:7.2-stretch #php:latest
-      - image: circleci/mysql:5.7.33         #8.0.20-ram
-        command: mysqld --default-authentication-plugin=mysql_native_password
-        environment:
-          MYSQL_USER: root
-          MYSQL_DATABASE: db
-          MYSQL_ROOT_PASSWORD: ''
-          MYSQL_PASSWORD: ''
+  # deploy(DockerHub):
+  #   docker:
+  #     - image: circleci/php:7.2-stretch #php:latest
+  #     - image: circleci/mysql:5.7.33         #8.0.20-ram
+  #       command: mysqld --default-authentication-plugin=mysql_native_password
+  #       environment:
+  #         MYSQL_USER: root
+  #         MYSQL_DATABASE: db
+  #         MYSQL_ROOT_PASSWORD: ''
+  #         MYSQL_PASSWORD: ''
          
-    steps:
-      #- checkout      
-      - attach_workspace:
-         at: ~/ 
-      - setup_remote_docker:           
-      - run:
-          name: build_image
-          command: |
-            sudo docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd 
-            sudo docker-php-ext-install zip bcmath pdo_mysql 
-            docker build -t ahmrash/mini-crm .  #repo name must be all small letters
+  #   steps:
+  #     #- checkout      
+  #     - attach_workspace:
+  #        at: ~/ 
+  #     - setup_remote_docker:           
+  #     - run:
+  #         name: build_image
+  #         command: |
+  #           sudo docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd 
+  #           sudo docker-php-ext-install zip bcmath pdo_mysql 
+  #           docker build -t ahmrash/mini-crm .  #repo name must be all small letters
 
-      - run:
-          name: run_E2E_test
-          command: |
-            docker run -d --name ephermal ahmrash/mini-crm
-            docker exec -it ephermal ./vendor/bin/phpunit
+  #     - run:
+  #         name: run_E2E_test
+  #         command: |
+  #           docker run -d --name ephermal ahmrash/mini-crm
+  #           docker exec -it ephermal ./vendor/bin/phpunit
 
 
-      - run:
-          name: publish
-          command: |
-            echo $DockerHubPass | docker login -u $DockerHubUsername --password-stdin
-            docker push ahmrash/mini-crm  
+  #     - run:
+  #         name: publish
+  #         command: |
+  #           echo $DockerHubPass | docker login -u $DockerHubUsername --password-stdin
+  #           docker push ahmrash/mini-crm  
 
          
   deploy(Heroku):
@@ -170,9 +170,9 @@ workflows:
           requires:
             - test
 
-      - deploy(DockerHub):
-          requires:
-            - codeHygiene
+      # - deploy(DockerHub):
+      #     requires:
+      #       - codeHygiene
       
       - deploy(Heroku):
           requires:
