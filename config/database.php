@@ -55,10 +55,10 @@ return [
         //], 
          'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', 'bad-check-in example'),
+            'host' => env('DB_HOST', 'db4free.net'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'bad-check-in example'),
-            'username' => env('DB_USERNAME', 'bad-check-in example'),
+            'database' => env('DB_DATABASE', 'db123dbplease'),
+            'username' => env('DB_USERNAME', 'root123rootpleas'),
             'password' => env('DB_PASSWORD', '1mentorG_rashed'),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
