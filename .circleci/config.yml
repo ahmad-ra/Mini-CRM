@@ -134,7 +134,7 @@ jobs:
   deploy(Heroku):
     machine:
         enabled: true
-    #working_directory: ~/circleci-demo-workflows
+
     environment:
       HEROKU_APP: "first-try-123" # define env var $HEROKU_APP
       HEROKU_LOGIN: ahmad.m.rashed@outlook.com

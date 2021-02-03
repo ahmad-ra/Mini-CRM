@@ -54,13 +54,3 @@ CMD ["php-fpm"]
 
 RUN php artisan config:clear
  
-##
-# FROM mysql:5.7
-
-
-# ENV MYSQL_ROOT_PASSWORD=
-# ENV MYSQL_DATABASE=db
-# ENV MYSQL_USER=root
-# ENV MYSQL_PASSWORD=
-
-##

@@ -61,7 +61,7 @@ Heroku:
 Will integrate Heroku with circle ci, to deploy automatically from the workflow in circle ci
 Will have to add environment variables:
 HEROKU_LOGIN: ahmad.m.rashed@outlook.com
-HEROKU_API_KEY: 1mentorG_rashed
+HEROKU_API_KEY: 
 HEROKU_APP: first-try-123
 
 key=$(cat ./artifacts/key)
@@ -73,4 +73,69 @@ Note from a blog: The usual configuration done using .env file in Laravel is not
 !!!!!!!!!!!!!
 
 _On Heroku project, in resources tab, you should add the Mysql as an addon to the project, name is ClearDBMySQL, bs 8alebn befloos, aw 7atta lw bbalash hwa m7tag credit card, w ana mdmansh en el website mys7bsh floos mn el hosting lamma y7sl clicks 3l site (3han el dynos hours)
+
+
+_ wb3deen 7t8ayyar el database/config.php t5lleeha tconenct 3la Heroku host
+#######for Heroku
+// $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+// $host = $url["host"] ?? null;
+// $username = $url["user"] ?? null;
+// $password = $url["pass"] ?? null;
+// $database = substr($url["path"], 1);
+####
+
+        // 'mysql' => [
+        //     'driver' => 'mysql',
+        //     'host' => $host,
+        //     'port' => env('DB_PORT', '3306'),
+        //     'database' => $database,
+        //     'username' => $username,
+        //     'password' => $password,
+        //     'unix_socket' => env('DB_SOCKET', ''),
+        //     'charset' => 'utf8mb4',
+        //     'collation' => 'utf8mb4_unicode_ci',
+        //     'prefix' => '',
+        //     'strict' => true,
+        //     'engine' => null,
+        // ],
+
+_bs mzbatetsh, fa8yyart 3la db4free.net, w zbatt el database/config.php 3leeha
+
+_Mzabatetsh bardo, error 500 internal server error
+_ 5lleeto y3ml migrate mn Heroku (Heroku run php artisan migrate), ra7 s2alny (sure[y/n]?) da 3shan Laravel mane3 elmigrate fl production, w hwa yo3tbr fl production, W da mn gwa job fa m2drsh 23ml input.
+
+_3mlt –no-tty fl command, fa 3ml command cancelled lwa7do
+
+_3mlt (heroku run php artisan migrate --force -a first-try-123), fa 2lly  
+                                                                               
+  SQLSTATE[42000]: Syntax error or access violation: 1231 Variable 'sql_mode'  
+   can't be set to the value of 'NO_AUTO_CREATE_USER' (SQL: select * from inf  
+  ormation_schema.tables where table_schema = db123dbplease and table_name =   
+  migrations)                                                                  
+                                                                               
+
+In MySqlConnector.php line 150:
+                                                                               
+  SQLSTATE[42000]: Syntax error or access violation: 1231 Variable 'sql_mode'  
+   can't be set to the value of 'NO_AUTO_CREATE_USER'                          
+                                                          
+
+_ fa 7deef el modes fe database/config.php fe mysql
+
+            'modes'  => [
+                'ONLY_FULL_GROUP_BY',
+                'STRICT_TRANS_TABLES',
+                'NO_ZERO_IN_DATE',
+                'NO_ZERO_DATE',
+                'ERROR_FOR_DIVISION_BY_ZERO',
+                'NO_ENGINE_SUBSTITUTION',
+            ]
+
+Da bs 3shan Heroku, ennama el migrate elly fl build 3shan testing sh8al 3ady
+
+_eshta8al, bs m3rfsh y3ml login, fa 73ml migrate seed
+            heroku run php artisan migrate --force --seed -a first-try-123 
+
+
+
 
