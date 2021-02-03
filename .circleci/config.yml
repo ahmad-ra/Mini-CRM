@@ -33,10 +33,10 @@ jobs:
           command: |
             cp .env.example .env  
             php artisan key:generate>> ./artifacts/key 
-      - run:
-          name: Migrate db 
-          command: |
-            php artisan migrate --env=testing --database=mysql --force --seed
+      # - run:
+      #     name: Migrate db 
+      #     command: |
+      #       php artisan migrate --env=testing --database=mysql --force --seed
  
   
       - store_artifacts:
