@@ -78,7 +78,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel321111
+                    Laravel_Good_checkin
                 </div>
 
                 <div class="links">
