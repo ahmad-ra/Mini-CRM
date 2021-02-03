@@ -173,9 +173,9 @@ workflows:
           requires:
             - test
 
-      - Cont_Delivery:
-          requires:
-            - codeHygiene
+      # - Cont_Delivery:
+      #     requires:
+      #       - codeHygiene
       
       - deploy:
           requires:
