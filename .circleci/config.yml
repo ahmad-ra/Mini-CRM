@@ -156,7 +156,7 @@ jobs:
             #cat ./artifacts/key
             key=$(cat ./artifacts/key)
             echo $key
-            heroku run php artisan migrate
+            heroku run php artisan migrate -a first-try-123 --no-tty
             heroku config:set APP_KEY=$(echo $key | cut -d "[" -f2 | cut -d "]" -f1) #$(php artisan --no-ansi key:generate --show) 
             git push heroku circleci-project-setup:master 
             #heroku run #rake db:migrate
