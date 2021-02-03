@@ -39,9 +39,9 @@ jobs:
       #       php artisan migrate --env=testing --database=mysql --force --seed
  
   
-      - store_artifacts:
-          path: ./artifacts
-          destination: build 
+      # - store_artifacts:
+      #     path: ./artifacts
+      #     destination: build 
 
       - persist_to_workspace:
           root: /home/circleci
