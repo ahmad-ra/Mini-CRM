@@ -1,10 +1,10 @@
 <?php
 #######for Heroku
-$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-$host = $url["host"] ?? null;
-$username = $url["user"] ?? null;
-$password = $url["pass"] ?? null;
-$database = substr($url["path"], 1);
+// $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+// $host = $url["host"] ?? null;
+// $username = $url["user"] ?? null;
+// $password = $url["pass"] ?? null;
+// $database = substr($url["path"], 1);
 ####
 return [
 
